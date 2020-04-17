@@ -348,6 +348,13 @@ impl Figure
 		Ok(self)
 	}
 
+    /// Wait for gnuplot terminal to terminate. Returns instantly, if no gnuplot terminal is
+    /// running.
+	///
+    pub fn wait(&mut self){
+        self.gnuplot.borrow_mut().as_mut().map(|p| p.wait());
+    }
+
 	/// Save the figure to a png file.
 	///
 	/// # Arguments
